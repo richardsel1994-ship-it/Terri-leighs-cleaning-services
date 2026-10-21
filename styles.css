@@ -174,3 +174,51 @@
   .cta-row { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 8px; }
   @media (max-width: 760px) { .tips { grid-template-columns: minmax(0, 1fr); } .tips-link { padding: 18px 20px; } }
   nav a[aria-current="page"] { background: rgba(255,255,255,0.18); }
+
+  /* slogan band */
+  .slogan { background: var(--deep); color: var(--on-deep); }
+  .slogan .wrap { padding-block: 56px; display: grid; gap: 16px; }
+  .slogan .big { font-family: var(--display); font-weight: 800; font-size: clamp(2.1rem, 6vw, 4.4rem); line-height: 1; letter-spacing: -0.03em; text-wrap: balance; }
+  .slogan .big em { font-style: normal; color: var(--bubble); }
+  .slogan .small-line { font-size: 1.15rem; max-width: 52ch; opacity: 0.88; }
+
+  /* booking calendar */
+  .booker { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 22px; align-items: start; }
+  .cal, .book-form { background: var(--card); border: 2px solid var(--line); border-radius: 26px; padding: 22px; }
+  .cal-top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 14px; }
+  .cal-top h3 { font-size: 1.5rem; font-weight: 800; }
+  .cal-nav { width: 44px; height: 44px; border-radius: 50%; border: 2px solid var(--pink); background: none; color: var(--pink); font-size: 1.6rem; line-height: 1; cursor: pointer; font-family: var(--display); }
+  .cal-nav:disabled { opacity: 0.3; cursor: default; }
+  .dow, .days { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 6px; }
+  .dow span { text-align: center; font-size: 0.8rem; font-weight: 700; color: var(--muted); padding-bottom: 4px; }
+  .day { aspect-ratio: 1; max-width: 100%; border: 0; border-radius: 12px; background: var(--blush); color: var(--ink); font: 700 1rem var(--body); cursor: pointer; font-variant-numeric: tabular-nums; }
+  .day:hover:not(:disabled) { background: var(--bubble); color: #2b0b1f; }
+  .day:disabled { background: none; color: var(--muted); opacity: 0.45; cursor: default; }
+  .day.today { outline: 2px dashed var(--pink); outline-offset: -2px; }
+  .day.on { background: var(--pink); color: var(--on-pink); }
+  .book-form { display: grid; gap: 14px; }
+  .picked { background: var(--blush); border-radius: 14px; padding: 12px 16px; font-weight: 600; color: var(--muted); }
+  .picked.set { background: var(--pink); color: var(--on-pink); }
+  .book-form fieldset { border: 0; padding: 0; margin: 0; }
+  .book-form legend, .field { font-weight: 700; font-size: 0.95rem; }
+  .slots { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; margin-top: 6px; }
+  .slots label { position: relative; }
+  .slots input { position: absolute; opacity: 0; }
+  .slots span { display: grid; text-align: center; padding: 10px 6px; border: 2px solid var(--line); border-radius: 14px; font-weight: 700; cursor: pointer; }
+  .slots small { font-weight: 500; color: var(--muted); font-size: 0.78rem; }
+  .slots input:checked + span { border-color: var(--pink); background: var(--blush); }
+  .slots input:focus-visible + span { outline: 3px solid var(--bubble); outline-offset: 2px; }
+  .field { display: grid; gap: 6px; }
+  .field .opt { font-weight: 500; color: var(--muted); }
+  .two { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 12px; }
+  .book-form input:not([type=radio]), .book-form select, .book-form textarea {
+    font: 500 1rem var(--body); color: var(--ink); background: var(--paper); border: 2px solid var(--line); border-radius: 12px; padding: 11px 12px; width: 100%; }
+  .book-form input:focus, .book-form select:focus, .book-form textarea:focus { outline: none; border-color: var(--pink); }
+  .form-err { color: var(--pink); font-weight: 700; min-height: 0; }
+  .form-err:empty { display: none; }
+  .send { display: flex; gap: 10px; flex-wrap: wrap; }
+  .send .btn { flex: 1 1 200px; cursor: pointer; font-family: var(--body); }
+  .fine { color: var(--muted); font-size: 0.88rem; }
+  @media (max-width: 860px) { .booker { grid-template-columns: minmax(0, 1fr); } }
+  @media (max-width: 420px) { .two { grid-template-columns: minmax(0, 1fr); } .cal, .book-form { padding: 16px; } .dow, .days { gap: 4px; } }
+  section[id], [id="safety"] { scroll-margin-top: 80px; }
