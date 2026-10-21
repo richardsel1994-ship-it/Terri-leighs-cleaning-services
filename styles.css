@@ -1,30 +1,21 @@
-  /* Layout: one hot-pink hero band with the name set huge, then quiet blush sections; pink is spent loudly once, then used as a line and a highlight. */
+  /* All-pink look: hot pink page, deeper and lighter pinks for sections and cards, every word in white. Same in light and dark mode. */
   :root {
-    --pink: #e3126f;        /* hot pink, the brand */
-    --pink-deep: #b80d58;
-    --bubble: #ff9ccb;      /* soft pink for highlights on the hot pink */
-    --blush: #ffe8f2;       /* section ground */
-    --paper: #fff8fb;       /* page ground */
-    --ink: #2b0b1f;         /* deep plum text */
-    --muted: #6e4a5f;
-    --card: #ffffff;
+    --pink: #e3126f;        /* hot pink: page, header and banner */
+    --pink-deep: #a80a50;   /* deep pink for buttons, chosen days and panels */
+    --bubble: #ffd1e6;      /* pale pink for highlighted words */
+    --blush: #cc0e63;       /* alternate sections */
+    --paper: #e3126f;       /* page ground */
+    --ink: #ffffff;         /* all writing */
+    --muted: #ffe6f1;       /* softer writing, still white-pink */
+    --card: #f03586;        /* cards sit a touch lighter than the page */
     --on-pink: #ffffff;
-    --line: #f6c6dc;
-    --deep: #2b0b1f;        /* the contact panel stays dark plum in both themes */
-    --on-deep: #fff3f8;
+    --line: #ff7fb5;
+    --deep: #a80a50;        /* slogan, contact and safety panels */
+    --on-deep: #ffffff;
     --whatsapp: #1fa855;    /* WhatsApp green, only on WhatsApp buttons */
     --display: "Bricolage Grotesque", "Arial Black", "Helvetica Neue", Arial, sans-serif;
     --body: "Figtree", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
-  }
-  @media (prefers-color-scheme: dark) {
-    :root:not([data-theme="light"]) {
-      --pink: #ff3d93; --pink-deep: #e3126f; --bubble: #ffb3d6; --blush: #2a0c1f; --paper: #1b0714;
-      --ink: #ffeaf4; --muted: #d7a9c2; --card: #2f0e23; --on-pink: #ffffff; --line: #4d1a3a; --deep: #3d1030; --on-deep: #fff3f8; color-scheme: dark;
-    }
-  }
-  :root[data-theme="dark"] {
-    --pink: #ff3d93; --pink-deep: #e3126f; --bubble: #ffb3d6; --blush: #2a0c1f; --paper: #1b0714;
-    --ink: #ffeaf4; --muted: #d7a9c2; --card: #2f0e23; --on-pink: #ffffff; --line: #4d1a3a; --deep: #3d1030; --on-deep: #fff3f8; color-scheme: dark;
+    color-scheme: light;
   }
 
   * { box-sizing: border-box; }
@@ -230,3 +221,36 @@
   .work-grid figcaption { position: absolute; left: 10px; right: 10px; bottom: 10px; background: var(--pink); color: var(--on-pink);
     font-weight: 700; font-size: 0.9rem; padding: 6px 12px; border-radius: 999px; width: fit-content; max-width: calc(100% - 20px); }
   footer a { color: var(--muted); }
+
+  /* ---- all-pink overrides: pink fills become deep pink, pink words and lines become white ---- */
+  nav a.quote { background: var(--on-pink); color: var(--pink-deep); }
+  .btn.white { color: var(--pink-deep); }
+  .btn.pink, .btn.pink:hover { background: var(--pink-deep); }
+  .head h2 em, .tip-group h2 em, .contact-box h2 em, .slogan .big em { color: var(--bubble); }
+  .service h3::after, .promises .tick, .day.on, .picked.set, .work-grid figcaption { background: var(--pink-deep); }
+  .service.oven { background: var(--pink-deep); border-color: var(--pink-deep); }
+  .places span { border-color: var(--ink); color: var(--ink); }
+  .places span.home { background: var(--ink); color: var(--pink-deep); }
+  a.detail.call { background: var(--pink); border-color: var(--pink); }
+  a.detail.call:hover { background: #f0358a; border-color: #f0358a; }
+  .tips-link { border-color: var(--ink); }
+  .tips-link b, .tips-link .arrow, .tip .need span { color: var(--ink); }
+  .tips-link:hover { background: var(--card); }
+  .cal-nav { border-color: var(--ink); color: var(--ink); }
+  .day { background: var(--blush); color: var(--ink); }
+  .day:hover:not(:disabled) { background: var(--ink); color: var(--pink-deep); }
+  .day:disabled { color: var(--muted); }
+  .day.today { outline-color: var(--ink); }
+  .slots input:checked + span { border-color: var(--ink); background: var(--pink-deep); }
+  .slots small { color: var(--muted); }
+  .book-form input:not([type=radio]), .book-form select, .book-form textarea { background: var(--pink); color: var(--ink); border-color: var(--line); }
+  .book-form input:focus, .book-form select:focus, .book-form textarea:focus { border-color: var(--ink); }
+  .book-form ::placeholder { color: var(--muted); opacity: 0.8; }
+  .form-err { color: var(--ink); background: var(--pink-deep); padding: 8px 12px; border-radius: 10px; }
+  .picked { color: var(--ink); }
+  .work-grid figure { background: var(--blush); }
+  footer, footer a { color: var(--ink); }
+  .detail { background: rgba(255,255,255,0.1); }
+  .hero h1 .sub { color: var(--bubble); }
+  .covers li { background: var(--pink-deep); color: var(--ink); }
+  .service.oven .covers li { background: rgba(255,255,255,0.2); }
