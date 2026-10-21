@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Terri Leigh's Cleaning Services</title>
+<meta name="description" content="Terri Leigh's Cleaning Services: home, building, office and oven cleaning across Hull and East Yorkshire.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Figtree:wght@400;500;600;700&display=swap">
+<style>
+  /* Layout: one hot-pink hero band with the name set huge, then quiet blush sections; pink is spent loudly once, then used as a line and a highlight. */
+  :root {
+    --pink: #e3126f;        /* hot pink, the brand */
+    --pink-deep: #b80d58;
+    --bubble: #ff9ccb;      /* soft pink for highlights on the hot pink */
+    --blush: #ffe8f2;       /* section ground */
+    --paper: #fff8fb;       /* page ground */
+    --ink: #2b0b1f;         /* deep plum text */
+    --muted: #6e4a5f;
+    --card: #ffffff;
+    --on-pink: #ffffff;
+    --line: #f6c6dc;
+    --deep: #2b0b1f;        /* the contact panel stays dark plum in both themes */
+    --on-deep: #fff3f8;
+    --display: "Bricolage Grotesque", "Arial Black", "Helvetica Neue", Arial, sans-serif;
+    --body: "Figtree", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --pink: #ff3d93; --pink-deep: #e3126f; --bubble: #ffb3d6; --blush: #2a0c1f; --paper: #1b0714;
+      --ink: #ffeaf4; --muted: #d7a9c2; --card: #2f0e23; --on-pink: #ffffff; --line: #4d1a3a; --deep: #3d1030; --on-deep: #fff3f8; color-scheme: dark;
+    }
+  }
+  :root[data-theme="dark"] {
+    --pink: #ff3d93; --pink-deep: #e3126f; --bubble: #ffb3d6; --blush: #2a0c1f; --paper: #1b0714;
+    --ink: #ffeaf4; --muted: #d7a9c2; --card: #2f0e23; --on-pink: #ffffff; --line: #4d1a3a; --deep: #3d1030; --on-deep: #fff3f8; color-scheme: dark;
+  }
+
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { margin: 0; background: var(--paper); color: var(--ink); font: 400 1.0625rem/1.65 var(--body); }
+  h1, h2, h3 { font-family: var(--display); line-height: 1.02; margin: 0; text-wrap: balance; letter-spacing: -0.02em; }
+  p { margin: 0; }
+  a { color: inherit; }
+  :focus-visible { outline: 3px solid var(--bubble); outline-offset: 3px; border-radius: 4px; }
+  .wrap {
+    max-width: 1080px; margin: 0 auto;
+    padding-left: max(20px, env(safe-area-inset-left, 0px));
+    padding-right: max(20px, env(safe-area-inset-right, 0px));
+  }
+
+  /* header */
+  body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 10; background: var(--pink); }
+  header { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 9; background: var(--pink); color: var(--on-pink); }
+  .bar { display: flex; align-items: center; justify-content: space-between; gap: 16px; min-height: 64px; flex-wrap: wrap; }
+  .logo { font-family: var(--display); font-weight: 800; font-size: 1.3rem; text-decoration: none; letter-spacing: -0.02em; white-space: nowrap; }
+  nav { display: flex; gap: 4px; flex-wrap: wrap; }
+  nav a { text-decoration: none; font-weight: 600; font-size: 0.95rem; padding: 8px 12px; border-radius: 999px; }
+  nav a:hover { background: rgba(255,255,255,0.18); }
+  nav a.quote { background: var(--on-pink); color: var(--pink); }
+
+  /* hero */
+  .hero { background: var(--pink); color: var(--on-pink); overflow: hidden; position: relative; }
+  .hero .wrap { padding-block: 56px 72px; position: relative; }
+  .hero .where { font-weight: 600; font-size: 1rem; opacity: 0.92; }
+  .hero h1 {
+    font-size: clamp(3.4rem, 13vw, 9.5rem); font-weight: 800; letter-spacing: -0.045em; line-height: 0.88;
+    margin: 18px 0 26px; max-width: 9ch;
+  }
+  .hero h1 .sub { display: block; font-size: 0.42em; font-weight: 700; letter-spacing: -0.02em; line-height: 1; margin-top: 0.25em; color: var(--blush); }
+  .hero p.lead { font-size: 1.2rem; max-width: 40ch; }
+  .actions { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 30px; }
+  .btn {
+    display: inline-flex; align-items: center; justify-content: center; text-decoration: none; font-weight: 700;
+    padding: 15px 26px; border-radius: 999px; font-size: 1.02rem; border: 2px solid transparent; transition: transform 0.12s;
+  }
+  .btn:active { transform: scale(0.97); }
+  .btn.white { background: var(--on-pink); color: var(--pink-deep); }
+  .btn.outline { border-color: rgba(255,255,255,0.75); color: var(--on-pink); }
+  .btn.outline:hover { background: rgba(255,255,255,0.14); }
+  .btn.pink { background: var(--pink); color: var(--on-pink); }
+  .btn.pink:hover { background: var(--pink-deep); }
+
+  /* the one flourish: sparkles that twinkle around the name */
+  .sparkle { position: absolute; color: var(--on-pink); pointer-events: none; }
+  .sparkle svg { display: block; width: 100%; height: 100%; }
+  .s1 { width: 70px; height: 70px; right: 9%; top: 34px; animation: twinkle 3.2s ease-in-out infinite; }
+  .s2 { width: 34px; height: 34px; right: 22%; top: 128px; animation: twinkle 3.2s ease-in-out 1.1s infinite; color: var(--bubble); }
+  .s3 { width: 46px; height: 46px; right: 6%; bottom: 60px; animation: twinkle 3.2s ease-in-out 2s infinite; color: var(--bubble); }
+  @keyframes twinkle { 0%, 100% { transform: scale(1) rotate(0deg); opacity: 1; } 50% { transform: scale(0.6) rotate(25deg); opacity: 0.55; } }
+  @media (max-width: 700px) { .s1 { width: 44px; height: 44px; top: 20px; right: 16px; } .s2 { display: none; } .s3 { width: 30px; height: 30px; bottom: 26px; } }
+
+  /* sections */
+  section { padding-block: 76px; }
+  .head { display: grid; gap: 10px; margin-bottom: 36px; max-width: 46ch; }
+  .head h2 { font-size: clamp(2.2rem, 5.5vw, 3.6rem); font-weight: 800; }
+  .head p { color: var(--muted); font-size: 1.1rem; }
+  .head h2 em { font-style: normal; color: var(--pink); }
+
+  /* services: four big blocks, each with what the clean actually covers */
+  .services { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; }
+  .service { background: var(--card); border: 2px solid var(--line); border-radius: 24px; padding: 28px; display: grid; gap: 12px; align-content: start; }
+  .service h3 { font-size: 1.75rem; font-weight: 800; }
+  .service h3::after { content: ""; display: block; width: 46px; height: 6px; border-radius: 6px; background: var(--pink); margin-top: 12px; }
+  .service p { color: var(--muted); }
+  .covers { list-style: none; padding: 0; margin: 4px 0 0; display: flex; flex-wrap: wrap; gap: 8px; }
+  .covers li { background: var(--blush); color: var(--ink); font-size: 0.9rem; font-weight: 600; padding: 6px 12px; border-radius: 999px; }
+  .service.oven { background: var(--pink); border-color: var(--pink); color: var(--on-pink); }
+  .service.oven p { color: var(--on-pink); opacity: 0.9; }
+  .service.oven h3::after { background: var(--on-pink); }
+  .service.oven .covers li { background: rgba(255,255,255,0.2); color: var(--on-pink); }
+
+  /* why */
+  .why { background: var(--blush); }
+  .why-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: start; }
+  .why-grid .head { margin-bottom: 0; }
+  .promises { list-style: none; padding: 0; margin: 0; display: grid; gap: 12px; }
+  .promises li { display: grid; grid-template-columns: 34px 1fr; gap: 14px; align-items: start; background: var(--card); border-radius: 18px; padding: 16px 18px; }
+  .promises .tick { width: 34px; height: 34px; border-radius: 50%; background: var(--pink); color: var(--on-pink); display: grid; place-items: center; font-weight: 800; }
+  .promises b { display: block; font-size: 1.05rem; }
+  .promises span.t { color: var(--muted); font-size: 0.97rem; }
+
+  /* area */
+  .places { display: flex; flex-wrap: wrap; gap: 10px; }
+  .places span { border: 2px solid var(--pink); color: var(--pink); font-weight: 700; padding: 8px 16px; border-radius: 999px; }
+  .places span.home { background: var(--pink); color: var(--on-pink); }
+
+  /* contact */
+  .contact { padding-top: 0; }
+  .contact-box { background: var(--deep); color: var(--on-deep); border-radius: 32px; padding: 48px 40px; display: grid; grid-template-columns: 1.1fr 1fr; gap: 32px; align-items: center; }
+  .contact-box h2 { font-size: clamp(2.2rem, 5.5vw, 3.6rem); font-weight: 800; }
+  .contact-box h2 em { font-style: normal; color: var(--bubble); }
+  .contact-box p { opacity: 0.85; margin-top: 12px; max-width: 38ch; }
+  .details { display: grid; gap: 12px; }
+  .detail { background: rgba(255,255,255,0.08); border: 2px dashed rgba(255,255,255,0.3); border-radius: 18px; padding: 16px 20px; }
+  .detail small { display: block; font-size: 0.85rem; opacity: 0.75; font-weight: 600; }
+  .detail strong { font-size: 1.25rem; font-family: var(--display); }
+
+  footer { padding-block: 30px 40px; color: var(--muted); font-size: 0.92rem; }
+  footer .wrap { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px; }
+
+  @media (max-width: 760px) {
+    nav a:not(.quote) { display: none; }
+    .services, .why-grid, .contact-box { grid-template-columns: minmax(0, 1fr); }
+    .contact-box { padding: 36px 22px; border-radius: 24px; }
+    section { padding-block: 56px; }
+    .service { padding: 22px; }
+  }
+  @media (prefers-reduced-motion: reduce) { .sparkle { animation: none !important; } html { scroll-behavior: auto; } }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap bar">
+    <a class="logo" href="#top">Terri Leigh's</a>
+    <nav aria-label="Main">
+      <a href="#services">Services</a>
+      <a href="#why">Why Terri</a>
+      <a href="#area">Area</a>
+      <a class="quote" href="#contact">Get a quote</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+  <div class="hero">
+    <span class="sparkle s1" aria-hidden="true"><svg viewBox="0 0 40 40"><path fill="currentColor" d="M20 0c1.6 9.6 5.6 15.2 20 20-14.4 4.8-18.4 10.4-20 20-1.6-9.6-5.6-15.2-20-20C14.4 15.2 18.4 9.6 20 0z"/></svg></span>
+    <span class="sparkle s2" aria-hidden="true"><svg viewBox="0 0 40 40"><path fill="currentColor" d="M20 0c1.6 9.6 5.6 15.2 20 20-14.4 4.8-18.4 10.4-20 20-1.6-9.6-5.6-15.2-20-20C14.4 15.2 18.4 9.6 20 0z"/></svg></span>
+    <span class="sparkle s3" aria-hidden="true"><svg viewBox="0 0 40 40"><path fill="currentColor" d="M20 0c1.6 9.6 5.6 15.2 20 20-14.4 4.8-18.4 10.4-20 20-1.6-9.6-5.6-15.2-20-20C14.4 15.2 18.4 9.6 20 0z"/></svg></span>
+    <div class="wrap">
+      <p class="where">Cleaning in Hull &amp; East Yorkshire</p>
+      <h1>Terri Leigh's <span class="sub">Cleaning Services</span></h1>
+      <p class="lead">Homes, buildings and offices left spotless, and ovens brought back to sparkling. Book a one-off clean or a regular slot.</p>
+      <div class="actions">
+        <a class="btn white" href="#contact">Get a free quote</a>
+        <a class="btn outline" href="#services">See what's cleaned</a>
+      </div>
+    </div>
+  </div>
+
+  <section id="services">
+    <div class="wrap">
+      <div class="head">
+        <h2>What Terri <em>cleans</em></h2>
+        <p>General domestic cleaning, inside homes, shared buildings and workplaces.</p>
+      </div>
+      <div class="services">
+        <article class="service">
+          <h3>Home cleaning</h3>
+          <p>Weekly, fortnightly or one-off cleans to keep your house fresh, so you get your weekends back.</p>
+          <ul class="covers"><li>Kitchens</li><li>Bathrooms &amp; toilets</li><li>Hoovering &amp; mopping</li><li>Dusting</li><li>Bins emptied</li></ul>
+        </article>
+        <article class="service">
+          <h3>Building cleaning</h3>
+          <p>Shared entrances, stairwells and communal areas in flats and buildings, kept clean and welcoming.</p>
+          <ul class="covers"><li>Entrances</li><li>Stairs &amp; landings</li><li>Hallways</li><li>Glass doors</li></ul>
+        </article>
+        <article class="service">
+          <h3>Office cleaning</h3>
+          <p>Before or after hours, so your team walks into a clean, tidy workplace every morning.</p>
+          <ul class="covers"><li>Desks &amp; surfaces</li><li>Kitchens</li><li>Toilets</li><li>Floors</li><li>Bins</li></ul>
+        </article>
+        <article class="service oven">
+          <h3>Oven cleans</h3>
+          <p>Burnt-on grease and grime lifted off, inside and out, so your oven looks close to new again.</p>
+          <ul class="covers"><li>Inside the oven</li><li>Racks &amp; trays</li><li>Glass door</li><li>Hob</li></ul>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="why" class="why">
+    <div class="wrap why-grid">
+      <div class="head">
+        <h2>Why book <em>Terri?</em></h2>
+        <p>A local cleaner who treats your home or workplace like her own.</p>
+      </div>
+      <ul class="promises">
+        <li><span class="tick" aria-hidden="true">✓</span><div><b>Free quotes</b><span class="t">Tell Terri what you need and she'll give you a clear price.</span></div></li>
+        <li><span class="tick" aria-hidden="true">✓</span><div><b>One-off or regular</b><span class="t">A single deep clean, or a slot every week or fortnight.</span></div></li>
+        <li><span class="tick" aria-hidden="true">✓</span><div><b>Homes and businesses</b><span class="t">Houses, flats, communal areas and offices.</span></div></li>
+        <li><span class="tick" aria-hidden="true">✓</span><div><b>Local to Hull</b><span class="t">Based in the city, covering nearby towns and villages.</span></div></li>
+      </ul>
+    </div>
+  </section>
+
+  <section id="area">
+    <div class="wrap">
+      <div class="head">
+        <h2>Covering <em>Hull</em> and nearby</h2>
+        <p>Not sure if you're in the area? Get in touch and ask.</p>
+      </div>
+      <div class="places">
+        <span class="home">Hull</span><span>Hessle</span><span>Cottingham</span><span>Beverley</span>
+        <span>Anlaby</span><span>Willerby</span><span>Hedon</span><span>Sutton-on-Hull</span>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" class="contact">
+    <div class="wrap">
+      <div class="contact-box">
+        <div>
+          <h2>Get a <em>free</em> quote</h2>
+          <p>Home, building, office or oven? Tell Terri what needs cleaning and when, and she'll get back to you with a price.</p>
+        </div>
+        <div class="details">
+          <div class="detail"><small>Phone</small><strong>Number coming soon</strong></div>
+          <div class="detail"><small>Email</small><strong>Email coming soon</strong></div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>© <span id="year">2026</span> Terri Leigh's Cleaning Services</span>
+    <span>Hull &amp; East Yorkshire</span>
+  </div>
+</footer>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+</script>
+</body>
+</html>
