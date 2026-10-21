@@ -1,16 +1,16 @@
   /* All-pink look: hot pink page, deeper and lighter pinks for sections and cards, every word in white. Same in light and dark mode. */
   :root {
-    --pink: #e3126f;        /* hot pink: page, header and banner */
-    --pink-deep: #a80a50;   /* deep pink for buttons, chosen days and panels */
-    --bubble: #ffd1e6;      /* pale pink for highlighted words */
-    --blush: #cc0e63;       /* alternate sections */
-    --paper: #e3126f;       /* page ground */
+    --pink: #ff4fa3;        /* lighter bright pink: page, header and banner */
+    --pink-deep: #e0237f;   /* stronger pink for buttons, chosen days and panels */
+    --bubble: #fff0f7;      /* pale pink for highlighted words */
+    --blush: #f53d95;       /* alternate sections */
+    --paper: #ff4fa3;       /* page ground */
     --ink: #ffffff;         /* all writing */
     --muted: #ffe6f1;       /* softer writing, still white-pink */
-    --card: #f03586;        /* cards sit a touch lighter than the page */
+    --card: #ff6db4;        /* cards sit a touch lighter than the page */
     --on-pink: #ffffff;
-    --line: #ff7fb5;
-    --deep: #a80a50;        /* slogan, contact and safety panels */
+    --line: #ffb0d6;
+    --deep: #e0237f;        /* slogan, contact and safety panels */
     --on-deep: #ffffff;
     --whatsapp: #1fa855;    /* WhatsApp green, only on WhatsApp buttons */
     --display: "Bricolage Grotesque", "Arial Black", "Helvetica Neue", Arial, sans-serif;
@@ -232,7 +232,7 @@
   .places span { border-color: var(--ink); color: var(--ink); }
   .places span.home { background: var(--ink); color: var(--pink-deep); }
   a.detail.call { background: var(--pink); border-color: var(--pink); }
-  a.detail.call:hover { background: #f0358a; border-color: #f0358a; }
+  a.detail.call:hover { background: #ff6db4; border-color: #ff6db4; }
   .tips-link { border-color: var(--ink); }
   .tips-link b, .tips-link .arrow, .tip .need span { color: var(--ink); }
   .tips-link:hover { background: var(--card); }
@@ -254,3 +254,6 @@
   .hero h1 .sub { color: var(--bubble); }
   .covers li { background: var(--pink-deep); color: var(--ink); }
   .service.oven .covers li { background: rgba(255,255,255,0.2); }
+  /* white writing on light pink: a soft shadow keeps it readable */
+  body { text-shadow: 0 1px 2px rgba(140, 0, 70, 0.28); }
+  .btn.white, nav a.quote, .places span.home, .day:hover:not(:disabled), input, select, textarea { text-shadow: none; }
