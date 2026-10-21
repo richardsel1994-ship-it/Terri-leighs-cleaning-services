@@ -136,6 +136,10 @@
   .detail { background: rgba(255,255,255,0.08); border: 2px dashed rgba(255,255,255,0.3); border-radius: 18px; padding: 16px 20px; }
   .detail small { display: block; font-size: 0.85rem; opacity: 0.75; font-weight: 600; }
   .detail strong { font-size: 1.25rem; font-family: var(--display); }
+  a.detail.call { display: grid; gap: 2px; text-decoration: none; background: var(--pink); border: 2px solid var(--pink); color: var(--on-pink); }
+  a.detail.call strong { font-size: 1.7rem; font-variant-numeric: tabular-nums; }
+  a.detail.call:hover { background: var(--pink-deep); border-color: var(--pink-deep); }
+  .detail .go { font-weight: 700; font-size: 0.9rem; opacity: 0.9; }
 
   footer { padding-block: 30px 40px; color: var(--muted); font-size: 0.92rem; }
   footer .wrap { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px; }
@@ -159,7 +163,7 @@
       <a href="#services">Services</a>
       <a href="#why">Why Terri</a>
       <a href="#area">Area</a>
-      <a class="quote" href="#contact">Get a quote</a>
+      <a class="quote" href="tel:+447575226399">Call 07575 226399</a>
     </nav>
   </div>
 </header>
@@ -174,7 +178,7 @@
       <h1>Terri Leigh's <span class="sub">Cleaning Services</span></h1>
       <p class="lead">Homes, buildings and offices left spotless, and ovens brought back to sparkling. Book a one-off clean or a regular slot.</p>
       <div class="actions">
-        <a class="btn white" href="#contact">Get a free quote</a>
+        <a class="btn white" href="tel:+447575226399">Call Terri: 07575 226399</a>
         <a class="btn outline" href="#services">See what's cleaned</a>
       </div>
     </div>
@@ -247,7 +251,7 @@
           <p>Home, building, office or oven? Tell Terri what needs cleaning and when, and she'll get back to you with a price.</p>
         </div>
         <div class="details">
-          <div class="detail"><small>Phone</small><strong>Number coming soon</strong></div>
+          <a class="detail call" href="tel:+447575226399"><small>Call or text Terri</small><strong>07575 226399</strong><span class="go">Tap to call</span></a>
           <div class="detail"><small>Email</small><strong>Email coming soon</strong></div>
         </div>
       </div>
