@@ -201,7 +201,7 @@
         var url = URL.createObjectURL(blob);
         var wrap = document.createElement('div'); wrap.className = 'pv';
         var img = document.createElement('img'); img.src = url; img.alt = '';
-        var cap = document.createElement('input'); cap.type = 'text'; cap.placeholder = 'Caption, e.g. Oven clean, Hessle'; cap.maxLength = 60;
+        var cap = document.createElement('input'); cap.type = 'text'; cap.placeholder = 'Caption, e.g. Office clean, Hessle'; cap.maxLength = 60;
         cap.id = 'cap-' + pending.length;
         wrap.append(img, cap); $('previews').appendChild(wrap);
         pending.push({ blob: blob, caption: cap });

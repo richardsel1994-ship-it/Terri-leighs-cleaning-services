@@ -87,10 +87,17 @@
   .service p { color: var(--muted); }
   .covers { list-style: none; padding: 0; margin: 4px 0 0; display: flex; flex-wrap: wrap; gap: 8px; }
   .covers li { background: var(--blush); color: var(--ink); font-size: 0.9rem; font-weight: 600; padding: 6px 12px; border-radius: 999px; }
-  .service.oven { background: var(--pink); border-color: var(--pink); color: var(--on-pink); }
-  .service.oven p { color: var(--on-pink); opacity: 0.9; }
-  .service.oven h3::after { background: var(--on-pink); }
-  .service.oven .covers li { background: rgba(255,255,255,0.2); color: var(--on-pink); }
+  .service.feature { background: var(--pink); border-color: var(--pink); color: var(--on-pink); }
+  .service.feature p { color: var(--on-pink); opacity: 0.9; }
+  .service.feature h3::after { background: var(--on-pink); }
+  .service.feature .covers li { background: rgba(255,255,255,0.2); color: var(--on-pink); }
+
+  .for-who { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; margin-bottom: 18px; }
+  .who { background: var(--on-pink); color: var(--pink-deep); border-radius: 24px; padding: 26px 28px; display: grid; gap: 6px; text-shadow: none; box-shadow: 0 10px 30px rgba(140,0,70,0.25); }
+  .who .label { font-size: 0.8rem; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase; opacity: 0.75; }
+  .who b { font-size: clamp(1.8rem, 4.5vw, 2.4rem); font-weight: 800; line-height: 1.05; }
+  .who .t { color: #6b1d45; font-weight: 500; }
+  @media (max-width: 640px) { .for-who { grid-template-columns: 1fr; } }
 
   /* why */
   .why { background: var(--blush); }
@@ -228,7 +235,7 @@
   .btn.pink, .btn.pink:hover { background: var(--pink-deep); }
   .head h2 em, .tip-group h2 em, .contact-box h2 em, .slogan .big em { color: var(--bubble); }
   .service h3::after, .promises .tick, .day.on, .picked.set, .work-grid figcaption { background: var(--pink-deep); }
-  .service.oven { background: var(--pink-deep); border-color: var(--pink-deep); }
+  .service.feature { background: var(--pink-deep); border-color: var(--pink-deep); }
   .places span { border-color: var(--ink); color: var(--ink); }
   .places span.home { background: var(--ink); color: var(--pink-deep); }
   a.detail.call { background: var(--pink); border-color: var(--pink); }
@@ -253,7 +260,7 @@
   .detail { background: rgba(255,255,255,0.1); }
   .hero h1 .sub { color: var(--bubble); }
   .covers li { background: var(--pink-deep); color: var(--ink); }
-  .service.oven .covers li { background: rgba(255,255,255,0.2); }
+  .service.feature .covers li { background: rgba(255,255,255,0.2); }
   /* white writing on light pink: a soft shadow keeps it readable */
   body { text-shadow: 0 1px 2px rgba(140, 0, 70, 0.28); }
   .btn.white, nav a.quote, .places span.home, .day:hover:not(:disabled), input, select, textarea { text-shadow: none; }
