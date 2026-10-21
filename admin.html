@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>Admin · Terri Leigh's Cleaning Services</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Figtree:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="styles.css">
+<style>
+  .admin { padding-block: 40px 64px; display: grid; gap: 22px; max-width: 760px; }
+  .admin h1 { font-size: clamp(2.4rem, 7vw, 3.6rem); font-weight: 800; }
+  .admin h1 em { font-style: normal; color: var(--pink); }
+  .panel { background: var(--card); border: 2px solid var(--line); border-radius: 24px; padding: 22px; display: grid; gap: 14px; }
+  .panel h2 { font-size: 1.6rem; font-weight: 800; }
+  .panel p { color: var(--muted); }
+  .field { display: grid; gap: 6px; font-weight: 700; font-size: 0.95rem; }
+  .panel input[type=password], .panel input[type=text], .panel textarea {
+    font: 500 1rem var(--body); color: var(--ink); background: var(--paper); border: 2px solid var(--line); border-radius: 12px; padding: 11px 12px; width: 100%; }
+  .panel input:focus, .panel textarea:focus { outline: none; border-color: var(--pink); }
+  .drop { border: 3px dashed var(--pink); border-radius: 20px; padding: 28px 18px; text-align: center; background: var(--blush); cursor: pointer; display: grid; gap: 6px; }
+  .drop b { font-family: var(--display); font-size: 1.4rem; color: var(--pink); }
+  .drop input { position: absolute; width: 1px; height: 1px; opacity: 0; }
+  .drop:focus-within { outline: 3px solid var(--bubble); outline-offset: 3px; }
+  .previews { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 150px), 1fr)); gap: 12px; }
+  .pv { display: grid; gap: 6px; }
+  .pv img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; border-radius: 14px; max-width: 100%; }
+  .pv input { font-size: 0.9rem !important; padding: 8px 10px !important; }
+  .row { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; }
+  .btn { cursor: pointer; font-family: var(--body); }
+  .btn:disabled { opacity: 0.5; cursor: default; }
+  .btn.ghost { background: none; border-color: var(--line); color: var(--ink); }
+  .status { font-weight: 700; border-radius: 14px; padding: 12px 16px; }
+  .status:empty { display: none; }
+  .status.ok { background: var(--blush); color: var(--ink); border-left: 6px solid var(--pink); }
+  .status.bad { background: var(--deep); color: var(--on-deep); }
+  .current { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 170px), 1fr)); gap: 12px; }
+  .current figure { margin: 0; display: grid; gap: 6px; }
+  .current img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; border-radius: 14px; max-width: 100%; }
+  .current figcaption { font-size: 0.9rem; color: var(--muted); min-height: 1.2em; }
+  .current .del { background: none; border: 2px solid var(--line); color: var(--ink); border-radius: 999px; padding: 6px 12px; font: 600 0.88rem var(--body); cursor: pointer; }
+  .current .del.sure { background: var(--pink); color: var(--on-pink); border-color: var(--pink); }
+  details summary { cursor: pointer; font-weight: 700; color: var(--pink); }
+  details ol { margin: 10px 0 0; padding-left: 1.3em; display: grid; gap: 6px; color: var(--muted); }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap bar">
+    <a class="logo" href="index.html">Terri Leigh's</a>
+    <nav aria-label="Main"><a class="quote" href="index.html">View website</a></nav>
+  </div>
+</header>
+
+<main class="wrap admin">
+  <h1>Admin: <em>job photos</em></h1>
+
+  <!-- Step 1: sign in with the GitHub key -->
+  <section class="panel" id="login">
+    <h2>Sign in</h2>
+    <p>Paste your admin key. Your phone remembers it, so you only do this once.</p>
+    <label class="field" for="token">Admin key<input type="password" id="token" autocomplete="off" placeholder="github_pat_…"></label>
+    <div class="row"><button class="btn pink" id="signIn" type="button">Sign in</button></div>
+    <p class="status" id="loginStatus" role="alert"></p>
+    <details>
+      <summary>How to get an admin key</summary>
+      <ol>
+        <li>On GitHub, open Settings, then Developer settings, then Personal access tokens, then Fine-grained tokens.</li>
+        <li>Tap Generate new token. Name it "Terri website photos" and set it to expire in 1 year.</li>
+        <li>Under Repository access choose Only select repositories, and pick Terri-leighs-cleaning-services.</li>
+        <li>Under Permissions, set Contents to Read and write.</li>
+        <li>Generate the token, copy it, and paste it above.</li>
+      </ol>
+    </details>
+  </section>
+
+  <!-- Step 2: add photos -->
+  <section class="panel" id="upload" hidden>
+    <h2>Add photos of finished jobs</h2>
+    <label class="drop" for="files">
+      <b>Tap to choose photos</b>
+      <span>or drag them here. Big photos are shrunk automatically.</span>
+      <input type="file" id="files" accept="image/*" multiple>
+    </label>
+    <div class="previews" id="previews"></div>
+    <div class="row">
+      <button class="btn pink" id="publish" type="button" disabled>Add to website</button>
+      <button class="btn ghost" id="clear" type="button" hidden>Clear</button>
+    </div>
+    <p class="status" id="uploadStatus" role="status" aria-live="polite"></p>
+  </section>
+
+  <!-- Step 3: photos already on the site -->
+  <section class="panel" id="manage" hidden>
+    <h2>On the website now</h2>
+    <p id="emptyNote">No photos yet. Add some above and they'll show in the "Our work" section.</p>
+    <div class="current" id="current"></div>
+    <div class="row"><button class="btn ghost" id="signOut" type="button">Sign out on this phone</button></div>
+  </section>
+</main>
+
+<script>
+(function () {
+  var OWNER = 'richardsel1994-ship-it', REPO = 'Terri-leighs-cleaning-services', BRANCH = 'main';
+  var API = 'https://api.github.com/repos/' + OWNER + '/' + REPO;
+  var token = '';
+  try { token = localStorage.getItem('ghToken') || ''; } catch (e) {}
+  var $ = function (id) { return document.getElementById(id); };
+  var pending = [];   // { blob, url, caption input }
+  var photos = [];    // contents of photos.json
+
+  function gh(method, path, body) {
+    return fetch(API + path, {
+      method: method,
+      headers: { Authorization: 'Bearer ' + token, Accept: 'application/vnd.github+json', 'X-GitHub-Api-Version': '2022-11-28' },
+      body: body ? JSON.stringify(body) : undefined, cache: 'no-store'
+    }).then(function (r) {
+      if (r.status === 404 && method === 'GET') return null;
+      if (!r.ok) return r.json().catch(function () { return {}; }).then(function (j) {
+        var e = new Error(j.message || ('GitHub said ' + r.status)); e.status = r.status; throw e;
+      });
+      return r.status === 204 ? null : r.json();
+    });
+  }
+  function setStatus(id, text, bad) { var el = $(id); el.textContent = text; el.className = 'status ' + (text ? (bad ? 'bad' : 'ok') : ''); }
+  function b64(str) { return btoa(unescape(encodeURIComponent(str))); }
+  function unb64(str) { return decodeURIComponent(escape(atob(str.replace(/\n/g, '')))); }
+
+  // Sign in: check the key can write to the site's repository.
+  function signIn() {
+    if (!token) return;
+    setStatus('loginStatus', 'Checking your key…');
+    gh('GET', '').then(function (repo) {
+      if (!repo) throw new Error('This key can\'t see the website. Check it was made for Terri-leighs-cleaning-services.');
+      if (!repo.permissions || !repo.permissions.push) throw new Error('This key can only read. Set Contents to "Read and write" and make a new key.');
+      try { localStorage.setItem('ghToken', token); } catch (e) {}
+      $('login').hidden = true; $('upload').hidden = false; $('manage').hidden = false;
+      return loadPhotos();
+    }).catch(function (e) {
+      setStatus('loginStatus', e.status === 401 ? 'That key isn\'t right or has expired. Make a new one and paste it in.' : e.message, true);
+    });
+  }
+  $('signIn').addEventListener('click', function () { token = $('token').value.trim(); signIn(); });
+  $('signOut').addEventListener('click', function () {
+    try { localStorage.removeItem('ghToken'); } catch (e) {}
+    token = ''; $('token').value = ''; $('login').hidden = false; $('upload').hidden = true; $('manage').hidden = true;
+    setStatus('loginStatus', 'Signed out on this phone.');
+  });
+
+  // Read photos.json straight from GitHub so the list is always current.
+  function loadPhotos() {
+    return gh('GET', '/contents/photos.json?ref=' + BRANCH).then(function (f) {
+      photos = f ? JSON.parse(unb64(f.content) || '[]') : [];
+      drawCurrent();
+    });
+  }
+  function drawCurrent() {
+    var box = $('current'); box.textContent = '';
+    $('emptyNote').hidden = photos.length > 0;
+    photos.forEach(function (p) {
+      var fig = document.createElement('figure');
+      var img = document.createElement('img'); img.alt = p.caption || ''; img.loading = 'lazy';
+      // Show from GitHub so new photos appear before the website finishes updating.
+      img.src = 'https://raw.githubusercontent.com/' + OWNER + '/' + REPO + '/' + BRANCH + '/' + p.file;
+      img.onerror = function () { img.onerror = null; img.src = p.file; };
+      var cap = document.createElement('figcaption'); cap.textContent = p.caption || '';
+      var del = document.createElement('button'); del.type = 'button'; del.className = 'del'; del.textContent = 'Remove';
+      del.addEventListener('click', function () {
+        if (!del.classList.contains('sure')) { del.classList.add('sure'); del.textContent = 'Tap again to remove'; return; }
+        del.disabled = true; del.textContent = 'Removing…';
+        commit([{ path: p.file, remove: true }], photos.filter(function (x) { return x.file !== p.file; }), 'Remove job photo')
+          .then(function () { setStatus('uploadStatus', 'Photo removed. The website updates in about a minute.'); })
+          .catch(function (e) { del.disabled = false; del.textContent = 'Remove'; setStatus('uploadStatus', 'Couldn\'t remove it: ' + e.message, true); });
+      });
+      fig.append(img, cap, del); box.appendChild(fig);
+    });
+  }
+
+  // Shrink a photo to at most 1600px wide/tall as a JPEG.
+  function shrink(file) {
+    return new Promise(function (resolve, reject) {
+      var img = new Image(), url = URL.createObjectURL(file);
+      img.onload = function () {
+        var max = 1600, w = img.naturalWidth, h = img.naturalHeight, k = Math.min(1, max / Math.max(w, h));
+        var c = document.createElement('canvas'); c.width = Math.round(w * k); c.height = Math.round(h * k);
+        c.getContext('2d').drawImage(img, 0, 0, c.width, c.height);
+        URL.revokeObjectURL(url);
+        c.toBlob(function (b) { b ? resolve(b) : reject(new Error('Couldn\'t read that photo')); }, 'image/jpeg', 0.82);
+      };
+      img.onerror = function () { URL.revokeObjectURL(url); reject(new Error(file.name + ' isn\'t a photo this phone can open')); };
+      img.src = url;
+    });
+  }
+  function addFiles(list) {
+    Array.prototype.forEach.call(list, function (file) {
+      if (!/^image\//.test(file.type)) return;
+      shrink(file).then(function (blob) {
+        var url = URL.createObjectURL(blob);
+        var wrap = document.createElement('div'); wrap.className = 'pv';
+        var img = document.createElement('img'); img.src = url; img.alt = '';
+        var cap = document.createElement('input'); cap.type = 'text'; cap.placeholder = 'Caption, e.g. Oven clean, Hessle'; cap.maxLength = 60;
+        cap.id = 'cap-' + pending.length;
+        wrap.append(img, cap); $('previews').appendChild(wrap);
+        pending.push({ blob: blob, caption: cap });
+        $('publish').disabled = false; $('clear').hidden = false;
+      }).catch(function (e) { setStatus('uploadStatus', e.message, true); });
+    });
+  }
+  $('files').addEventListener('change', function (e) { addFiles(e.target.files); e.target.value = ''; });
+  var drop = document.querySelector('.drop');
+  drop.addEventListener('dragover', function (e) { e.preventDefault(); });
+  drop.addEventListener('drop', function (e) { e.preventDefault(); addFiles(e.dataTransfer.files); });
+  function clearPending() { pending = []; $('previews').textContent = ''; $('publish').disabled = true; $('clear').hidden = true; }
+  $('clear').addEventListener('click', clearPending);
+
+  function blobB64(blob) {
+    return new Promise(function (res, rej) { var r = new FileReader(); r.onload = function () { res(String(r.result).split(',')[1]); }; r.onerror = rej; r.readAsDataURL(blob); });
+  }
+
+  // Save several files and the new photos.json in ONE commit, so the website redeploys once.
+  function commit(changes, newList, message) {
+    return gh('GET', '/git/ref/heads/' + BRANCH).then(function (ref) {
+      var parent = ref.object.sha;
+      return gh('GET', '/git/commits/' + parent).then(function (c) {
+        return Promise.all(changes.map(function (ch) {
+          if (ch.remove) return { path: ch.path, mode: '100644', type: 'blob', sha: null };
+          return gh('POST', '/git/blobs', { content: ch.base64, encoding: 'base64' }).then(function (b) {
+            return { path: ch.path, mode: '100644', type: 'blob', sha: b.sha };
+          });
+        })).then(function (entries) {
+          entries.push({ path: 'photos.json', mode: '100644', type: 'blob', content: JSON.stringify(newList, null, 2) + '\n' });
+          return gh('POST', '/git/trees', { base_tree: c.tree.sha, tree: entries });
+        }).then(function (tree) {
+          return gh('POST', '/git/commits', { message: message, tree: tree.sha, parents: [parent] });
+        }).then(function (nc) {
+          return gh('PATCH', '/git/refs/heads/' + BRANCH, { sha: nc.sha });
+        });
+      });
+    }).then(function () { photos = newList; drawCurrent(); });
+  }
+
+  $('publish').addEventListener('click', function () {
+    if (!pending.length) return;
+    var btn = $('publish'); btn.disabled = true;
+    setStatus('uploadStatus', 'Uploading ' + pending.length + ' photo' + (pending.length > 1 ? 's' : '') + '…');
+    loadPhotos().then(function () {
+      var stamp = new Date().toISOString().replace(/[-:T]/g, '').slice(0, 14);
+      return Promise.all(pending.map(function (p, i) {
+        return blobB64(p.blob).then(function (data) {
+          return { path: 'photos/job-' + stamp + '-' + (i + 1) + '.jpg', base64: data, caption: p.caption.value.trim() };
+        });
+      }));
+    }).then(function (files) {
+      var added = files.map(function (f) { return { file: f.path, caption: f.caption, added: new Date().toISOString().slice(0, 10) }; });
+      return commit(files, added.concat(photos), 'Add ' + files.length + ' job photo' + (files.length > 1 ? 's' : ''));
+    }).then(function () {
+      clearPending();
+      setStatus('uploadStatus', 'Added! The photos will show on the website in about a minute.');
+    }).catch(function (e) {
+      btn.disabled = false;
+      setStatus('uploadStatus', 'Upload didn\'t work: ' + e.message + '. Check your signal and try again.', true);
+    });
+  });
+
+  if (token) { $('token').value = token; signIn(); }
+})();
+</script>
+</body>
+</html>

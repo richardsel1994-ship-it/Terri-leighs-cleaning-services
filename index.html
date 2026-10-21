@@ -75,6 +75,16 @@
     </div>
   </section>
 
+  <section id="work" class="work" hidden>
+    <div class="wrap">
+      <div class="head">
+        <h2>Our <em>work</em></h2>
+        <p>Recent jobs finished by Terri and the team.</p>
+      </div>
+      <div class="work-grid" id="workGrid"></div>
+    </div>
+  </section>
+
   <div class="slogan" aria-label="Our promise">
     <div class="wrap">
       <p class="big">When you want clean,<br>we get <em>squeaky clean</em> results.</p>
@@ -179,12 +189,27 @@
 <footer>
   <div class="wrap">
     <span>© <span id="year">2026</span> Terri Leigh's Cleaning Services</span>
-    <span>Hull &amp; East Yorkshire</span>
+    <span>Hull &amp; East Yorkshire · <a href="admin.html" rel="nofollow">Admin</a></span>
   </div>
 </footer>
 
 <script>
   document.getElementById('year').textContent = new Date().getFullYear();
+
+  // "Our work" gallery: photos Terri adds from the admin page, listed in photos.json.
+  fetch('photos.json', { cache: 'no-store' }).then(function (r) { return r.ok ? r.json() : []; }).then(function (list) {
+    if (!Array.isArray(list) || !list.length) return;
+    var grid = document.getElementById('workGrid');
+    list.slice(0, 24).forEach(function (p) {
+      var fig = document.createElement('figure');
+      var img = document.createElement('img');
+      img.src = p.file; img.alt = p.caption || 'A clean finished by Terri Leigh\'s Cleaning Services'; img.loading = 'lazy';
+      fig.appendChild(img);
+      if (p.caption) { var c = document.createElement('figcaption'); c.textContent = p.caption; fig.appendChild(c); }
+      grid.appendChild(fig);
+    });
+    document.getElementById('work').hidden = false;
+  }).catch(function () {});
 
   // Booking calendar: pick a day and time, then send the request to Terri on WhatsApp or by text.
   (function () {
